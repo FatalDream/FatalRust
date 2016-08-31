@@ -94,8 +94,8 @@ namespace FatalRust
                     break;
 
                 case VSConstants.VSStd97CmdID.Start:
-                    String text = await ThreadHelper.JoinableTaskFactory.RunAsync(BuildController.Start);
-                    MessageBox.Show("Start called!" + text);
+                    BuildController.Start();
+                    MessageBox.Show("Start called!");
                     result = true;
                     break;
             }

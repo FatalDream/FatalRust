@@ -44,7 +44,8 @@ namespace FatalRust.BuildSystem.Control
                 String dllPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\";
                 project.SetGlobalProperty("ExtensionPath", dllPath);
                 project.Build(new OutputPaneLogger());
-                
+
+                await access.ReleaseAsync();
             }
 
             return "bla";
