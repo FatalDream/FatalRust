@@ -38,7 +38,14 @@ namespace FatalRust.External.Rustup
 
         private static EitherSuccessOrError<String,String> CallRustup(String arguments)
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo("rustup.exe", arguments);
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "rustup.exe",
+                Arguments = arguments,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                CreateNoWindow = true
+            };
             using (Process p = Process.Start(startInfo))
             {
                 return p.StandardOutput.ReadToEnd().AsOption().AsEither("Could not find rustup.exe");
