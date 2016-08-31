@@ -134,6 +134,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FatalRust.Build\FatalRust.Build.csproj">
+      <Project>{5674b3d7-91b2-4d0c-8917-ec104ecbee27}</Project>
+      <Name>FatalRust.Build</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FatalRust.ProjectTemplate\FatalRust.ProjectTemplate.csproj">
       <Project>{f2424a41-bf8a-430a-9ee6-693a19af3bc4}</Project>
       <Name>FatalRust.ProjectTemplate</Name>

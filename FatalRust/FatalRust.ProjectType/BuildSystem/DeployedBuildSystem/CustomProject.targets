@@ -49,6 +49,12 @@
       <Context>File;BrowseObject</Context>
     </PropertyPageSchema>
     <PropertyPageSchema Include="
+                        $(MSBuildThisFileDirectory)Rules\Rs.xaml;
+                        $(MSBuildThisFileDirectory)Rules\Toml.xaml;
+                        ">
+      <Context>File;BrowseObject</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="
                         $(MSBuildThisFileDirectory)Rules\assemblyreference.xaml;
                         $(MSBuildThisFileDirectory)Rules\comreference.xaml;
                         $(MSBuildThisFileDirectory)Rules\projectreference.xaml;
@@ -70,5 +76,19 @@
       <Context>BrowseObject</Context>
     </PropertyPageSchema>
   </ItemGroup>
+
+  <PropertyGroup>
+    <FatalRustExtensionPath Condition="'$(FatalRustExtensionPath)'==''">C:\</FatalRustExtensionPath>
+  </PropertyGroup>
+
+  <UsingTask AssemblyFile="$(ExtensionPath)FatalRust.Build.dll"
+             TaskFactory="CargoBuildFactory"
+             TaskName="CargoBuild" />
+  
+  <Target Name="Build">
+    <Message Text="outdir: $(OutDir)" />
+    <Message Text="extensionpath: $(ExtensionPath)" />
+    <CargoBuild></CargoBuild>
+  </Target>
   
 </Project>
