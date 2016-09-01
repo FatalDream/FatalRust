@@ -15,7 +15,10 @@ namespace FatalRust.Build
         {
             var result = Rustup.Instance;
             result.Do(
-                rustup => Log.LogMessage(rustup.Version, new object[0]),
+                rustup => {
+                    Log.LogMessage("Found rustup: " + rustup.Version.ToString(), new object[0]);
+                    Log.LogMessage("Toolchain path: " + rustup.ToolchainPath, new object[0]);
+                    },
                 error => Log.LogError(error.ToString(), new object[0]));
 
             return result.IsSuccess;

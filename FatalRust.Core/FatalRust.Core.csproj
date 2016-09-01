@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinaryVersion.cs" />
     <Compile Include="Communication.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="ProcessOutput.cs" />

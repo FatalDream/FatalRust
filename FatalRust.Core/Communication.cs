@@ -10,7 +10,7 @@ namespace FatalRust.Core
 {
     public static class Communication
     {
-        public static EitherSuccessOrError<String, Error<String>> ReadProcess(String filename, String arguments)
+        public static EitherSuccessOrError<ProcessOutput, Error<String>> ReadProcess(String filename, String arguments)
         {
             try
             {
@@ -25,11 +25,12 @@ namespace FatalRust.Core
                 return EitherSuccessOrError<String, Error<String>>.Create(
                     Process.Start(startInfo)
                            .StandardOutput
-                           .ReadToEnd());
+                           .ReadToEnd())
+                    .Map(output => new ProcessOutput(output));
             }
             catch (Exception e)
             {
-                return EitherSuccessOrError<String, Error<String>>.Create(
+                return EitherSuccessOrError<ProcessOutput, Error<String>>.Create(
                     new Error<String>("When trying to call " + filename + ": " + e.Message));
             }
         }
