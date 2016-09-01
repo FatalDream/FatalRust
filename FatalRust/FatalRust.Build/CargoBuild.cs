@@ -16,7 +16,7 @@ namespace FatalRust.Build
             var result = Rustup.Instance;
             result.Do(
                 rustup => Log.LogMessage(rustup.Version, new object[0]),
-                error => Log.LogError(error, new object[0]));
+                error => Log.LogError(error.ToString(), new object[0]));
 
             return result.IsSuccess;
         }

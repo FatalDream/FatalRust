@@ -3,30 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Diagnostics;
 using Bearded.Monads;
+using FatalRust.Core;
 
 namespace FatalRust.External.Rustup
 {
     public class Rustup
     {
-        public static EitherSuccessOrError<Rustup,String> Instance
+        public static EitherSuccessOrError<Rustup,Error<String>> Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    return CallRustup("--version")
+                    return Communication.ReadProcess("rustup.exe", "--version")
                         .Map(v => {
                                 instance = new Rustup(v);
-                                return instance;
-                    });
+                                return instance; });
                 }
                 else
                 {
-                    return instance
-                        .AsOption()
-                        .AsEither("Rustup instance is null");
+                    return EitherSuccessOrError<Rustup, Error<String>>.Create(
+                        instance);
                 }
             }
         }
@@ -36,21 +34,7 @@ namespace FatalRust.External.Rustup
             this.version = version;
         }
 
-        private static EitherSuccessOrError<String,String> CallRustup(String arguments)
-        {
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = "rustup.exe",
-                Arguments = arguments,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                CreateNoWindow = true
-            };
-            using (Process p = Process.Start(startInfo))
-            {
-                return p.StandardOutput.ReadToEnd().AsOption().AsEither("Could not find rustup.exe");
-            }
-        }
+        
 
 
         
