@@ -38,7 +38,6 @@ namespace FatalRust.External.Rustup
                 + Regex.Escape(".")
                 + "([0-9]+)");
 
-
             return from version in Communication.ReadProcess("rustup.exe", "--version")
                                             .SelectMany(o => o.ParseRegex(versionRegex))
                                             .Map(m => new BinaryVersion(
@@ -63,6 +62,7 @@ namespace FatalRust.External.Rustup
             this.toolchainPath = toolchainPath;
         }
 
+        
         
         public BinaryVersion Version
         {
