@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FatalRust.External.Rustup;
+using FatalRust.Core;
+using FatalRust.External;
+using Bearded.Monads;
 //using FatalRust.External.Cargo;
 
 namespace FatalRust.Build
@@ -13,15 +15,24 @@ namespace FatalRust.Build
     {
         public override bool Execute()
         {
-            var result = Rustup.Instance;
-            result.Do(
-                rustup => {
+            return Rustup.Instance
+                .WhenSuccess(rustup => {
                     Log.LogMessage("Found rustup: " + rustup.Version.ToString(), new object[0]);
-                    Log.LogMessage("Toolchain path: " + rustup.ToolchainPath, new object[0]);
-                    },
-                error => Log.LogError(error.ToString(), new object[0]));
+                    Log.LogMessage("Toolchain path: " + rustup.ToolchainPath, new object[0]); })
+                .Map(rustup => rustup.GetCargos())
+                .WhenSuccess(cargos => Log.LogMessage("Found cargos: " + String.Join("\n\n ", showCargos(cargos)), new object[0]))
 
-            return result.IsSuccess;
+                .WhenError(error => Log.LogError(error.ToString(), new object[0]))
+
+                .IsSuccess;
+        }
+
+        public List<String> showCargos(List<EitherSuccessOrError<Cargo,Error<String>>> list)
+        {
+            return list.Select<EitherSuccessOrError<Cargo, Error<String>>, String>(c => c.Unify(
+                  cargo => cargo.ToString(),
+                  error => error.ToString()))
+                .ToList();
         }
     }
 }

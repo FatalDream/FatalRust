@@ -46,10 +46,17 @@
   <ItemGroup>
     <Compile Include="CargoResult.cs" />
     <Compile Include="Cargo.cs" />
+    <Compile Include="CargoVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FatalRust.Core\FatalRust.Core.csproj">
+      <Project>{3dc9270c-9ff0-453a-937d-f047ce230302}</Project>
+      <Name>FatalRust.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

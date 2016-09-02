@@ -58,6 +58,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\External\Cargo\Cargo.csproj">
+      <Project>{4eeb500e-0001-45ee-9494-111b26ba04a8}</Project>
+      <Name>Cargo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\External\Rustup\Rustup.csproj">
       <Project>{478b9775-6015-45c1-8ac3-095a6c74b2a2}</Project>
       <Name>Rustup</Name>
