@@ -7,16 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FatalRust.ProjectType", "Fa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FatalRust.ProjectTemplate", "FatalRust\FatalRust.ProjectTemplate\FatalRust.ProjectTemplate.csproj", "{F2424A41-BF8A-430A-9EE6-693A19AF3BC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FatalRust.Build", "FatalRust\FatalRust.Build\FatalRust.Build.csproj", "{5674B3D7-91B2-4D0C-8917-EC104ECBEE27}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{D43CF500-79C0-455E-80E8-D988C38BBE18}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rustup", "External\Rustup\Rustup.csproj", "{478B9775-6015-45C1-8AC3-095A6C74B2A2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FatalRust.Core", "FatalRust.Core\FatalRust.Core.csproj", "{3DC9270C-9FF0-453A-937D-F047CE230302}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cargo", "External\Cargo\Cargo.csproj", "{4EEB500E-0001-45EE-9494-111B26BA04A8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,28 +21,8 @@ Global
 		{F2424A41-BF8A-430A-9EE6-693A19AF3BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2424A41-BF8A-430A-9EE6-693A19AF3BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2424A41-BF8A-430A-9EE6-693A19AF3BC4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5674B3D7-91B2-4D0C-8917-EC104ECBEE27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5674B3D7-91B2-4D0C-8917-EC104ECBEE27}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5674B3D7-91B2-4D0C-8917-EC104ECBEE27}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5674B3D7-91B2-4D0C-8917-EC104ECBEE27}.Release|Any CPU.Build.0 = Release|Any CPU
-		{478B9775-6015-45C1-8AC3-095A6C74B2A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{478B9775-6015-45C1-8AC3-095A6C74B2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{478B9775-6015-45C1-8AC3-095A6C74B2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{478B9775-6015-45C1-8AC3-095A6C74B2A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DC9270C-9FF0-453A-937D-F047CE230302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DC9270C-9FF0-453A-937D-F047CE230302}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DC9270C-9FF0-453A-937D-F047CE230302}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DC9270C-9FF0-453A-937D-F047CE230302}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4EEB500E-0001-45EE-9494-111B26BA04A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4EEB500E-0001-45EE-9494-111B26BA04A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4EEB500E-0001-45EE-9494-111B26BA04A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4EEB500E-0001-45EE-9494-111B26BA04A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{478B9775-6015-45C1-8AC3-095A6C74B2A2} = {D43CF500-79C0-455E-80E8-D988C38BBE18}
-		{4EEB500E-0001-45EE-9494-111B26BA04A8} = {D43CF500-79C0-455E-80E8-D988C38BBE18}
 	EndGlobalSection
 EndGlobal

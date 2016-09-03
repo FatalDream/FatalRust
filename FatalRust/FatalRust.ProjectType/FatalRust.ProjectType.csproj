@@ -150,10 +150,24 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildSystem\Controlled\CargoBuild.cs" />
+    <Compile Include="BuildSystem\Controlled\CargoBuildFactory.cs" />
     <Compile Include="BuildSystem\Control\BuildController.cs" />
     <Compile Include="BuildSystem\Control\IBuildController.cs" />
     <Compile Include="BuildSystem\Control\Logger.cs" />
     <Compile Include="CommandGroupHandler.cs" />
+    <Compile Include="Core\BinaryVersion.cs" />
+    <Compile Include="Core\Communication.cs" />
+    <Compile Include="Core\EReleaseChannel.cs" />
+    <Compile Include="Core\Error.cs" />
+    <Compile Include="Core\ERustABI.cs" />
+    <Compile Include="Core\ETargetArchitecture.cs" />
+    <Compile Include="Core\ProcessOutput.cs" />
+    <Compile Include="Core\ToolchainId.cs" />
+    <Compile Include="External\Cargo.cs" />
+    <Compile Include="External\CargoResult.cs" />
+    <Compile Include="External\CargoVersion.cs" />
+    <Compile Include="External\Rustup.cs" />
     <Compile Include="MyConfiguredProject.cs" />
     <Compile Include="MyUnconfiguredProject.cs" />
     <Compile Include="ProjectConfiguration\ProjectToolchainConfigurationHelper.cs" />
@@ -260,24 +274,6 @@
     <Analyzer Include="..\..\packages\Microsoft.VisualStudio.Threading.Analyzers.14.1.131-pre\analyzers\Microsoft.VisualStudio.Threading.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\External\Cargo\Cargo.csproj">
-      <Project>{4eeb500e-0001-45ee-9494-111b26ba04a8}</Project>
-      <Name>Cargo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\External\Rustup\Rustup.csproj">
-      <Project>{478b9775-6015-45c1-8ac3-095a6c74b2a2}</Project>
-      <Name>Rustup</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\FatalRust.Core\FatalRust.Core.csproj">
-      <Project>{3dc9270c-9ff0-453a-937d-f047ce230302}</Project>
-      <Name>FatalRust.Core</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
-    </ProjectReference>
-    <ProjectReference Include="..\FatalRust.Build\FatalRust.Build.csproj">
-      <Project>{5674b3d7-91b2-4d0c-8917-ec104ecbee27}</Project>
-      <Name>FatalRust.Build</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FatalRust.ProjectTemplate\FatalRust.ProjectTemplate.csproj">
       <Project>{f2424a41-bf8a-430a-9ee6-693a19af3bc4}</Project>
       <Name>FatalRust.ProjectTemplate</Name>
@@ -286,6 +282,7 @@
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
   <!-- TODO: This copies the build authoring to a well-known location so that on the machine this project builds on,

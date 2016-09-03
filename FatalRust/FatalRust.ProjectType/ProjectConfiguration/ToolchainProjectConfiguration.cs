@@ -11,9 +11,10 @@ namespace FatalRust
 {
     class ToolchainProjectConfiguration : ProjectConfiguration
     {
-        public ToolchainProjectConfiguration(ToolchainId toolchain)
+        public ToolchainProjectConfiguration(ToolchainId toolchain, String name)
         {
             this.toolchain = toolchain;
+            this.name = name;
         }
 
         IImmutableDictionary<string, string> ProjectConfiguration.Dimensions
@@ -24,6 +25,7 @@ namespace FatalRust
                 builder.Add("ReleaseChannel", toolchain.ReleaseChannel.ToString());
                 builder.Add("TargetArchitecture", toolchain.TargetArchitecture.ToString());
                 builder.Add("RustABI", toolchain.RustABI.ToString());
+                builder.Add("Name", name);
                 return builder.ToImmutableDictionary();
             }
         }
@@ -38,8 +40,9 @@ namespace FatalRust
 
         bool IEquatable<ProjectConfiguration>.Equals(ProjectConfiguration other)
         {
-            return other.GetType() == this.GetType() 
-                && this.toolchain.Equals(((ToolchainProjectConfiguration)other).Toolchain);
+            return other.GetType() == this.GetType()
+                && this.toolchain.Equals(((ToolchainProjectConfiguration)other).Toolchain)
+                && this.name.Equals(((ToolchainProjectConfiguration)other).Name);
         }
 
         private ToolchainId toolchain;
@@ -47,6 +50,12 @@ namespace FatalRust
         public ToolchainId Toolchain
         {
             get { return toolchain; }
+        }
+
+        private String name;
+        public String Name
+        {
+            get { return name; }
         }
     }
 }

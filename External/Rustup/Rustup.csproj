@@ -50,17 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Rustup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FatalRust.Core\FatalRust.Core.csproj">
       <Project>{3dc9270c-9ff0-453a-937d-f047ce230302}</Project>
       <Name>FatalRust.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cargo\Cargo.csproj">
-      <Project>{4eeb500e-0001-45ee-9494-111b26ba04a8}</Project>
-      <Name>Cargo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

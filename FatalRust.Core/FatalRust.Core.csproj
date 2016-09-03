@@ -50,15 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinaryVersion.cs" />
-    <Compile Include="Communication.cs" />
-    <Compile Include="Error.cs" />
-    <Compile Include="ERustABI.cs" />
-    <Compile Include="ETargetArchitecture.cs" />
-    <Compile Include="ProcessOutput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EReleaseChannel.cs" />
-    <Compile Include="ToolchainId.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />

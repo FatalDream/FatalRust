@@ -19,6 +19,8 @@ namespace FatalRust
     [AppliesTo("ProjectConfigurationsFromRustupToolchains")]
     internal class ProjectToolchainConfigurationService : IProjectConfigurationsServiceInternal
     {
+        private int number = 0;
+
         public ProjectToolchainConfigurationService()
         {
             Console.WriteLine("created service!");
@@ -37,7 +39,7 @@ namespace FatalRust
         ProjectConfiguration InternalGetSuggested()
         {
             return ProjectToolchainConfigurationHelper.GetConfigurations().Unify(
-                    list => list[0],
+                    list => new ToolchainProjectConfiguration(list[0], "MyProj" + (number++).ToString()),
                     error => { throw new Exception(error.ToString()); });
         }
 
@@ -75,18 +77,20 @@ namespace FatalRust
         {
             return Task.Run(() => ProjectToolchainConfigurationHelper.GetConfigurations()
                                     .Unify(
-                                        list => (IImmutableSet<ProjectConfiguration>) list.ToImmutableHashSet(),
+                                        list => /*(IImmutableSet<ProjectConfiguration>) list.ToImmutableHashSet()*/
+                                            (IImmutableSet<ProjectConfiguration>) (new ProjectConfiguration[0]).ToImmutableHashSet(),
                                         error => { throw new Exception(error.ToString()); }));
         }
 
         Task<ProjectConfiguration> IProjectConfigurationsService.GetProjectConfigurationAsync(string name)
         {
-            return Task.Run(() => ProjectToolchainConfigurationHelper.GetConfigurations()
-                                    .Select(
-                                        list => list.Where(conf => conf.Name == name).First())
-                                    .Unify(
-                                        conf => conf,
-                                        error => { throw new Exception(error.ToString()); }));
+             throw new System.Collections.Generic.KeyNotFoundException("hello?");
+            //return Task.Run(() => ProjectToolchainConfigurationHelper.GetConfigurations()
+            //                        .Select(
+            //                            list => list.Where(conf => conf.Name == name).First())
+            //                        .Unify(
+            //                            conf => conf,
+            //                            error => { throw new Exception(error.ToString()); }));
         }
 
         Task IProjectConfigurationsService.RemoveKnownProjectConfigurationAsync(string name, bool removeConditionedElements)

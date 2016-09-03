@@ -15,12 +15,12 @@ namespace FatalRust
 {
     static class ProjectToolchainConfigurationHelper
     {
-        public static EitherSuccessOrError<IList<ProjectConfiguration>,Error<String>> GetConfigurations()
+        public static EitherSuccessOrError<IList<ToolchainId>,Error<String>> GetConfigurations()
         {
             return Rustup.Instance
-                .Select<Rustup,Error<String>,IList<ProjectConfiguration>> (
+                .Select<Rustup,Error<String>,IList<ToolchainId>> (
                     rustup => rustup.GetCorrectCargos()
-                                     .Select(c => (ProjectConfiguration) new ToolchainProjectConfiguration(c.Toolchain))
+                                     .Select(c => c.Toolchain)
                                      .ToList());
         }
     }
