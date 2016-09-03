@@ -15,6 +15,9 @@ namespace FatalRust
     using System.ComponentModel;
     using System.Runtime.InteropServices;
     using Microsoft.VisualStudio.Shell;
+    using System.Reflection;
+    using System.IO;
+    using Microsoft.VisualStudio.ProjectSystem.Utilities;
 
     /// <summary>
     /// This class implements the package exposed by this assembly.
@@ -27,8 +30,27 @@ namespace FatalRust
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [Description("A custom project type based on CPS")]
     [Guid(VsPackage.PackageGuid)]
+    [AppliesTo("FatalRust")]
     public sealed class VsPackage : Package
     {
+        protected override void Initialize()
+        {
+            AppDomain.CurrentDomain.AssemblyResolve += OnAssemblyResolve;
+        }
+
+        private Assembly OnAssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            string path = Assembly.GetExecutingAssembly().Location;
+            path = Path.GetDirectoryName(path);
+
+            if (args.Name.Contains("FatalRust")) {
+   
+                   path = Path.Combine(path, args.Name);
+                   return Assembly.LoadFrom(path);
+            }
+            return null;
+        }
+
         /// <summary>
         /// The GUID for this package.
         /// </summary>

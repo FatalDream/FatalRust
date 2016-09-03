@@ -80,6 +80,15 @@ namespace FatalRust.External
                                                      select cargo))
                 .ToList();
         }
+
+        public List<Cargo> GetCorrectCargos()
+        {
+            return GetCargos()
+                .SelectMany(c => c.Unify(
+                    cargo => new Cargo[] { cargo },
+                    error => new Cargo[] { }))
+                .ToList();
+        }
         
         public BinaryVersion Version
         {

@@ -55,6 +55,11 @@ namespace FatalRust.External
             return toolChain.ToString() + "\n" + version.ToString() + "\n@" + pathToExecutable;
         }
 
+        public ToolchainId Toolchain
+        {
+            get { return toolChain; }
+        }
+
         private String pathToExecutable;
         private ToolchainId toolChain;
         private CargoVersion version;

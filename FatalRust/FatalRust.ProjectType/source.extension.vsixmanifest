@@ -16,5 +16,6 @@
     <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="FatalRust.ProjectType" Path="|FatalRust.ProjectType|"/>
     <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="FatalRust.ProjectType" Path="|FatalRust.ProjectType;PkgdefProjectOutputGroup|" />
     <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="FatalRust.ProjectTemplate" d:TargetPath="|FatalRust.ProjectTemplate;TemplateProjectOutputGroup|" Path="ProjectTemplates" d:VsixSubPath="ProjectTemplates" />
+    <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="FatalRust.Core" Path="|FatalRust.Core|" AssemblyName="|FatalRust.Core;AssemblyName|" />
   </Assets>
 </PackageManifest>

@@ -14,9 +14,9 @@
   <!-- Capabilities for this project.  Conditions should be based on platform|configuration only. -->
   <ItemGroup>
     <ProjectCapability Include="FatalRust" />
-    <ProjectCapability Include="AssemblyReferences;COMReferences;ProjectReferences;SDKReferences" />
-    <ProjectCapability Include="AllTargetOutputGroups;VisualStudioWellKnownOutputGroups" />
-    <ProjectCapability Include="ProjectConfigurationsDeclaredAsItems" />
+    <!--<ProjectCapability Include="AssemblyReferences;COMReferences;ProjectReferences;SDKReferences" />
+    <ProjectCapability Include="AllTargetOutputGroups;VisualStudioWellKnownOutputGroups" />-->
+    <ProjectCapability Include="ProjectConfigurationsFromRustupToolchains" />
   </ItemGroup>
 
   <ItemGroup>
@@ -76,10 +76,6 @@
       <Context>BrowseObject</Context>
     </PropertyPageSchema>
   </ItemGroup>
-
-  <PropertyGroup>
-    <FatalRustExtensionPath Condition="'$(FatalRustExtensionPath)'==''">C:\</FatalRustExtensionPath>
-  </PropertyGroup>
 
   <UsingTask AssemblyFile="$(ExtensionPath)FatalRust.Build.dll"
              TaskFactory="CargoBuildFactory"

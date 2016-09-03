@@ -6,22 +6,44 @@ using System.Threading.Tasks;
 
 namespace FatalRust.Core
 {
-    public class ToolchainId
+    public class ToolchainId : IEquatable<ToolchainId>
     {
-        private EReleaseChannel ReleaseChannel;
-        private ETargetArchitecture TargetArchitecture;
-        private ERustABI RustABI;
+        private EReleaseChannel releaseChannel;
+        private ETargetArchitecture targetArchitecture;
+        private ERustABI rustABI;
+
+        public EReleaseChannel ReleaseChannel
+        {
+            get { return releaseChannel; }
+        }
+
+        public ETargetArchitecture TargetArchitecture
+        {
+            get { return targetArchitecture; }
+        }
+
+        public ERustABI RustABI
+        {
+            get { return rustABI; }
+        }
 
         public ToolchainId(EReleaseChannel channel, ETargetArchitecture architecture, ERustABI abi)
         {
-            this.ReleaseChannel = channel;
-            this.TargetArchitecture = architecture;
-            this.RustABI = abi;
+            this.releaseChannel = channel;
+            this.targetArchitecture = architecture;
+            this.rustABI = abi;
         }
 
         public override String ToString()
         {
-            return ReleaseChannel.ToString() + "-" + TargetArchitecture.ToString() + "-" + RustABI.ToString();
+            return releaseChannel.ToString() + "-" + targetArchitecture.ToString() + "-" + rustABI.ToString();
+        }
+
+        bool IEquatable<ToolchainId>.Equals(ToolchainId other)
+        {
+            return this.releaseChannel == other.releaseChannel
+                && this.targetArchitecture == other.targetArchitecture
+                && this.rustABI == other.rustABI;
         }
     }
 }
