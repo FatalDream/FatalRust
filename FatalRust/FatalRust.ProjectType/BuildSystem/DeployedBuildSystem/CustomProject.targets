@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|AnyCPU">
-      <Configuration>Debug</Configuration>
-      <Platform>AnyCPU</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|AnyCPU">
-      <Configuration>Release</Configuration>
-      <Platform>AnyCPU</Platform>
-    </ProjectConfiguration>
-  </ItemGroup>
 
   <!-- Capabilities for this project.  Conditions should be based on platform|configuration only. -->
   <ItemGroup>
@@ -77,13 +67,14 @@
     </PropertyPageSchema>
   </ItemGroup>
 
-  <UsingTask AssemblyFile="$(ExtensionPath)FatalRust.Build.dll"
+  <UsingTask AssemblyFile="$(ExtensionPath)FatalRust.dll"
              TaskFactory="CargoBuildFactory"
              TaskName="CargoBuild" />
   
   <Target Name="Build">
     <Message Text="outdir: $(OutDir)" />
     <Message Text="extensionpath: $(ExtensionPath)" />
+    <Message Text="platform: $(Platform)" />
     <CargoBuild></CargoBuild>
   </Target>
   

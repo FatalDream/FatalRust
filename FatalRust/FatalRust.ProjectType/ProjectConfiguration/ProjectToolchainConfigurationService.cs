@@ -77,15 +77,9 @@ namespace FatalRust
 
         Task<IImmutableSet<ProjectConfiguration>> IProjectConfigurationsService.GetKnownProjectConfigurationsAsync()
         {
-            //Configurations = new ProjectConfiguration[]
-            //{
-            //    MakeConf("Debug", "cargo"),
-            //    MakeConf("Release", "cargo")
-            //}.ToList();
             UpdateConfigurations();
             
             return Task.FromResult((IImmutableSet<ProjectConfiguration>)Configurations.ToImmutableHashSet());
-            //return Task.Run(() => );
         }
 
         void UpdateConfigurations()
@@ -110,14 +104,6 @@ namespace FatalRust
             {
                 throw new System.Collections.Generic.KeyNotFoundException(e.Message);
             }
-
-             //throw new System.Collections.Generic.KeyNotFoundException("hello?");
-            //return Task.Run(() => ProjectToolchainConfigurationHelper.GetConfigurations()
-            //                        .Select(
-            //                            list => list.Where(conf => conf.Name == name).First())
-            //                        .Unify(
-            //                            conf => conf,
-            //                            error => { throw new Exception(error.ToString()); }));
         }
 
         Task IProjectConfigurationsService.RemoveKnownProjectConfigurationAsync(string name, bool removeConditionedElements)
