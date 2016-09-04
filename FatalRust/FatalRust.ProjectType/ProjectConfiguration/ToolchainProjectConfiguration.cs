@@ -28,8 +28,8 @@ namespace FatalRust
                 builder.Add("Name", name);
                 builder.Add("OutputName", "output-" + name);
                 builder.Add("AvailablePlatforms", "cargo");
-                builder.Add("Configuration", "Debug|Win32");
-                builder.Add("Platform", "cargo");
+                builder.Add("Configuration", "Debug");
+                builder.Add("Platform", "x86");
                 return builder.ToImmutableDictionary();
             }
         }

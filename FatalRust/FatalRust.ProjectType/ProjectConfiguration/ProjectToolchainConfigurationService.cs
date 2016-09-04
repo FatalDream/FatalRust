@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections;
 using System.Collections.Immutable;
 using System.Windows;
 using Microsoft.VisualStudio;
@@ -12,6 +13,7 @@ using System.Threading;
 using Microsoft.VisualStudio.Threading;
 using Microsoft.VisualStudio.ProjectSystem;
 using Bearded.Monads;
+using System.Collections.Generic;
 
 namespace FatalRust
 {
@@ -20,6 +22,7 @@ namespace FatalRust
     internal class ProjectToolchainConfigurationService : IProjectConfigurationsServiceInternal
     {
         private int number = 0;
+        List<ProjectConfiguration> Configurations;
 
         public ProjectToolchainConfigurationService()
         {
@@ -38,9 +41,8 @@ namespace FatalRust
 
         ProjectConfiguration InternalGetSuggested()
         {
-            return ProjectToolchainConfigurationHelper.GetConfigurations().Unify(
-                    list => new ToolchainProjectConfiguration(list[0], "MyProj" + (number++).ToString()),
-                    error => { throw new Exception(error.ToString()); });
+            UpdateConfigurations();
+            return Configurations[0];
         }
 
 
@@ -75,16 +77,41 @@ namespace FatalRust
 
         Task<IImmutableSet<ProjectConfiguration>> IProjectConfigurationsService.GetKnownProjectConfigurationsAsync()
         {
-            return Task.Run(() => ProjectToolchainConfigurationHelper.GetConfigurations()
+            //Configurations = new ProjectConfiguration[]
+            //{
+            //    MakeConf("Debug", "cargo"),
+            //    MakeConf("Release", "cargo")
+            //}.ToList();
+            UpdateConfigurations();
+            
+            return Task.FromResult((IImmutableSet<ProjectConfiguration>)Configurations.ToImmutableHashSet());
+            //return Task.Run(() => );
+        }
+
+        void UpdateConfigurations()
+        {
+
+            Configurations = ProjectToolchainConfigurationHelper.GetConfigurations()
+                                    .Select(list => list.Select(toolchain => ProjectToolchainConfigurationHelper.MakeConfiguration("Debug", toolchain)))
                                     .Unify(
-                                        list => /*(IImmutableSet<ProjectConfiguration>) list.ToImmutableHashSet()*/
-                                            (IImmutableSet<ProjectConfiguration>) (new ProjectConfiguration[0]).ToImmutableHashSet(),
-                                        error => { throw new Exception(error.ToString()); }));
+                                        list => list.ToList(),
+                                        //(IImmutableSet<ProjectConfiguration>)(new ProjectConfiguration[0]).ToImmutableHashSet(),
+                                        error => { throw new Exception(error.ToString()); });
         }
 
         Task<ProjectConfiguration> IProjectConfigurationsService.GetProjectConfigurationAsync(string name)
         {
-             throw new System.Collections.Generic.KeyNotFoundException("hello?");
+            try
+            {
+                var conf = Configurations.Where(config => config.Name == name).First();
+                return Task.FromResult(conf);
+            }
+            catch (Exception e)
+            {
+                throw new System.Collections.Generic.KeyNotFoundException(e.Message);
+            }
+
+             //throw new System.Collections.Generic.KeyNotFoundException("hello?");
             //return Task.Run(() => ProjectToolchainConfigurationHelper.GetConfigurations()
             //                        .Select(
             //                            list => list.Where(conf => conf.Name == name).First())
