@@ -26,7 +26,9 @@ namespace FatalRust
                 builder.Add("TargetArchitecture", toolchain.TargetArchitecture.ToString());
                 builder.Add("RustABI", toolchain.RustABI.ToString());
                 builder.Add("Name", name);
-                builder.Add("Configuration", "Debug");
+                builder.Add("OutputName", "output-" + name);
+                builder.Add("AvailablePlatforms", "cargo");
+                builder.Add("Configuration", "Debug|Win32");
                 builder.Add("Platform", "cargo");
                 return builder.ToImmutableDictionary();
             }

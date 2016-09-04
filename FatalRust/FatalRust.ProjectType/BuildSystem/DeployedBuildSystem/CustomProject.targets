@@ -14,8 +14,8 @@
   <!-- Capabilities for this project.  Conditions should be based on platform|configuration only. -->
   <ItemGroup>
     <ProjectCapability Include="FatalRust" />
-    <!--<ProjectCapability Include="AssemblyReferences;COMReferences;ProjectReferences;SDKReferences" />
-    <ProjectCapability Include="AllTargetOutputGroups;VisualStudioWellKnownOutputGroups" />-->
+    <!--<ProjectCapability Include="AssemblyReferences;COMReferences;ProjectReferences;SDKReferences" />-->
+    <ProjectCapability Include="AllTargetOutputGroups;VisualStudioWellKnownOutputGroups" />
     <ProjectCapability Include="ProjectConfigurationsFromRustupToolchains" />
   </ItemGroup>
 
