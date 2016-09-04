@@ -75,7 +75,9 @@
     <Message Text="outdir: $(OutDir)" />
     <Message Text="extensionpath: $(ExtensionPath)" />
     <Message Text="platform: $(Platform)" />
-    <CargoBuild></CargoBuild>
+    <CargoBuild
+      ProjectDirectory="$(MSBuildProjectDirectory)"
+      PlatformName="$(Platform)" />
   </Target>
   
 </Project>

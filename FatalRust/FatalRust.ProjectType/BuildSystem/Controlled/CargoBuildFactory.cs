@@ -10,6 +10,8 @@ namespace FatalRust.Build
 {
     public class CargoBuildFactory : ITaskFactory
     {
+        private TaskPropertyInfo[] _parameters;
+
         string ITaskFactory.FactoryName => "FatalRust.Build.CargoBuildFactory";
 
         Type ITaskFactory.TaskType => typeof(CargoBuild);
@@ -25,7 +27,16 @@ namespace FatalRust.Build
 
         TaskPropertyInfo[] ITaskFactory.GetTaskParameters()
         {
-            return new TaskPropertyInfo[0];
+            _parameters = _parameters ?? typeof(CargoBuild)
+                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .Select(prop =>
+                    new TaskPropertyInfo(
+                        prop.Name,
+                        prop.PropertyType,
+                        prop.GetCustomAttributes().OfType<OutputAttribute>().Any(),
+                        prop.GetCustomAttributes().OfType<RequiredAttribute>().Any()))
+                .ToArray();
+            return _parameters;
         }
 
         bool ITaskFactory.Initialize(string taskName, IDictionary<string, TaskPropertyInfo> parameterGroup, string taskBody, IBuildEngine taskFactoryLoggingHost)

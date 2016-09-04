@@ -40,14 +40,14 @@ namespace FatalRust.External
             this.version = version;
         }
 
-        public EitherSuccessOrError<CargoResult, String> Call()
+        public EitherSuccessOrError<Success, Error<String>> Build(String projectDirectory, Action<String> ResultHandler)
         {
-            String cargo = Path.Combine(pathToExecutable, "cargo.exe");
-            var process = System.Diagnostics.Process.Start(cargo);
-            return process.StandardOutput.ReadToEnd()
-                .AsOption()
-                .Map(text => new CargoResult(text))
-                .AsEither("could not read cargo...");
+            return Communication.StartProcess(
+                "cargo.exe",
+                "build",
+                projectDirectory,
+                ResultHandler,
+                ResultHandler);
         }
         
         public override string ToString()

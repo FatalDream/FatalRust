@@ -163,6 +163,7 @@
     <Compile Include="Core\ERustABI.cs" />
     <Compile Include="Core\ETargetArchitecture.cs" />
     <Compile Include="Core\ProcessOutput.cs" />
+    <Compile Include="Core\Success.cs" />
     <Compile Include="Core\ToolchainId.cs" />
     <Compile Include="External\Cargo.cs" />
     <Compile Include="External\CargoResult.cs" />
