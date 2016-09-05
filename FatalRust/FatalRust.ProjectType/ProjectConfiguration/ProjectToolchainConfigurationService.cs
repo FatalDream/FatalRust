@@ -21,6 +21,9 @@ namespace FatalRust
     [AppliesTo("ProjectConfigurationsFromRustupToolchains")]
     internal class ProjectToolchainConfigurationService : IProjectConfigurationsServiceInternal
     {
+        [Import(AllowDefault = true)]
+        public Lazy<IActiveConfiguredProjectProvider> ActiveConfiguredProjectProvider { get; set; }
+
         private int number = 0;
         List<ProjectConfiguration> Configurations;
 
@@ -31,18 +34,26 @@ namespace FatalRust
 
         ProjectConfiguration IProjectConfigurationsService.SuggestedProjectConfiguration
         {
-            get { return InternalGetSuggested(); }
+            get { return InternalGetSuggested(true); }
         }
         
         ProjectConfiguration IProjectConfigurationsServiceInternal.GetSuggestedProjectConfiguration(bool queryActiveConfiguration)
         {
-            return InternalGetSuggested();
+            return InternalGetSuggested(queryActiveConfiguration);
         }
 
-        ProjectConfiguration InternalGetSuggested()
+        ProjectConfiguration InternalGetSuggested(bool queryActiveConfiguration)
         {
-            UpdateConfigurations();
-            return Configurations[0];
+            return ActiveConfiguredProjectProvider.AsOption()
+                .SelectMany(provider => provider.Value.ActiveConfiguredProject.AsOption())
+                .Select(project => project.ProjectConfiguration)
+                .Where(_ => queryActiveConfiguration)
+
+                .Else(() =>
+                {
+                    UpdateConfigurations();
+                    return Configurations[0];
+                });
         }
 
 
