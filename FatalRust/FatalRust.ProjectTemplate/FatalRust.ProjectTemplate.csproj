@@ -62,8 +62,8 @@
   <ItemGroup>
     <None Include="FatalRust.frsproj" />
     <None Include="FatalRust.ico" />
-    <None Include="Program.cs" />
-    <None Include="Properties\AssemblyInfo.cs" />
+    <None Include="Cargo.toml" />
+    <None Include="src\main.rs" />
   </ItemGroup>
   <ItemGroup>
     <VSTemplate Include="FatalRust.vstemplate">
