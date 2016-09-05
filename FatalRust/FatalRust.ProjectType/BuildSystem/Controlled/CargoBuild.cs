@@ -1,13 +1,10 @@
-﻿using Microsoft.Build;
+﻿using Bearded.Monads;
+using FatalRust.Core;
+using FatalRust.External;
+using Microsoft.Build.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FatalRust.Core;
-using FatalRust.External;
-using Bearded.Monads;
-using Microsoft.Build.Framework;
 
 namespace FatalRust.Build
 {

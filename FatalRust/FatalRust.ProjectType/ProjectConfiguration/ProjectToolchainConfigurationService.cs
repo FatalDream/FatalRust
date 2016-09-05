@@ -1,19 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Immutable;
-using System.Windows;
-using Microsoft.VisualStudio;
+﻿using Bearded.Monads;
+using Microsoft.VisualStudio.ProjectSystem;
 using Microsoft.VisualStudio.ProjectSystem.Designers;
 using Microsoft.VisualStudio.ProjectSystem.Utilities;
-using System.ComponentModel.Composition;
-using FatalRust.BuildSystem.Control;
-using System.Threading.Tasks;
-using System.Threading;
 using Microsoft.VisualStudio.Threading;
-using Microsoft.VisualStudio.ProjectSystem;
-using Bearded.Monads;
+using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FatalRust
 {
