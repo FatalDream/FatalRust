@@ -15,9 +15,6 @@ namespace FatalRust
     using System.ComponentModel;
     using System.Runtime.InteropServices;
     using Microsoft.VisualStudio.Shell;
-    using System.Reflection;
-    using System.IO;
-    using Microsoft.VisualStudio.ProjectSystem.Utilities;
 
     /// <summary>
     /// This class implements the package exposed by this assembly.
@@ -30,37 +27,18 @@ namespace FatalRust
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [Description("A custom project type based on CPS")]
     [Guid(VsPackage.PackageGuid)]
-    [AppliesTo("FatalRust")]
     public sealed class VsPackage : Package
     {
-        protected override void Initialize()
-        {
-            AppDomain.CurrentDomain.AssemblyResolve += OnAssemblyResolve;
-        }
-
-        private Assembly OnAssemblyResolve(object sender, ResolveEventArgs args)
-        {
-            string path = Assembly.GetExecutingAssembly().Location;
-            path = Path.GetDirectoryName(path);
-
-            if (args.Name.Contains("FatalRust")) {
-   
-                   path = Path.Combine(path, args.Name);
-                   return Assembly.LoadFrom(path);
-            }
-            return null;
-        }
-
         /// <summary>
         /// The GUID for this package.
         /// </summary>
-        public const string PackageGuid = "b10395b0-3034-4db3-b753-60595a51491e";
+        public const string PackageGuid = "97cd0471-2ac5-41ed-92dc-7d58d031f5fa";
 
         /// <summary>
         /// The GUID for this project type.  It is unique with the project file extension and
         /// appears under the VS registry hive's Projects key.
         /// </summary>
-        public const string ProjectTypeGuid = "a7e05ab5-0931-4532-bd2e-575682e55184";
+        public const string ProjectTypeGuid = "2b0f961d-5366-42d6-ac18-1f163ef4e312";
 
         /// <summary>
         /// The file extension of this project type.  No preceding period.

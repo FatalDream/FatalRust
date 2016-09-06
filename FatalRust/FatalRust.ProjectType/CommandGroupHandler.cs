@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Immutable;
-using System.Windows;
+﻿using FatalRust.BuildSystem.Control;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.ProjectSystem.Designers;
-using Microsoft.VisualStudio.ProjectSystem.Utilities;
-using System.ComponentModel.Composition;
-using FatalRust.BuildSystem.Control;
-using System.Threading.Tasks;
-using System.Threading;
+using Microsoft.VisualStudio.ProjectSystem;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Threading;
+using System;
+using System.Collections.Immutable;
+using System.ComponentModel.Composition;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace FatalRust
 {
@@ -57,7 +55,6 @@ namespace FatalRust
                     progressiveStatus |= CommandStatus.Enabled | CommandStatus.Supported;
                     result = new CommandStatusResult(true, commandText, progressiveStatus);
                     break;
-
 
             }
 

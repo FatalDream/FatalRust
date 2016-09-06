@@ -1,7 +1,5 @@
 ﻿using Bearded.Monads;
 using Microsoft.VisualStudio.ProjectSystem;
-using Microsoft.VisualStudio.ProjectSystem.Designers;
-using Microsoft.VisualStudio.ProjectSystem.Utilities;
 using Microsoft.VisualStudio.Threading;
 using System;
 using System.Collections.Generic;

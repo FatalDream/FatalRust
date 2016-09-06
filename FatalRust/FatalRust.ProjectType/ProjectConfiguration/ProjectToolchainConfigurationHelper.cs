@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using Microsoft.VisualStudio.Threading;
 using Microsoft.VisualStudio.ProjectSystem;
 using System.Collections.Immutable;
 using Bearded.Monads;
 using FatalRust.Core;
 using FatalRust.External;
-using Microsoft.VisualStudio.ProjectSystem.Utilities;
 
 namespace FatalRust
 {

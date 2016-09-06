@@ -17,8 +17,7 @@ namespace FatalRust
     using System.Threading.Tasks;
     using System.Threading.Tasks.Dataflow;
     using Microsoft.VisualStudio.ProjectSystem;
-    using Microsoft.VisualStudio.ProjectSystem.Designers;
-    using Microsoft.VisualStudio.ProjectSystem.Utilities;
+    using Microsoft.VisualStudio.ProjectSystem.VS;
     using Microsoft.VisualStudio.Shell;
     using Microsoft.VisualStudio.Shell.Interop;
     using Task = System.Threading.Tasks.Task;
@@ -60,7 +59,7 @@ namespace FatalRust
         internal IActiveConfiguredProjectSubscriptionService SubscriptionService { get; }
 
         [Import]
-        internal IThreadHandling ThreadHandling { get; }
+        internal IProjectThreadingService ProjectThreadingService { get; }
 
         [Import]
         internal ActiveConfiguredProject<ConfiguredProject> ActiveConfiguredProject { get; }

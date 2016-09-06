@@ -8,7 +8,6 @@ namespace FatalRust
     using System.Threading.Tasks;
     using Microsoft.VisualStudio.ProjectSystem;
     using Microsoft.VisualStudio.ProjectSystem.Properties;
-    using Microsoft.VisualStudio.ProjectSystem.Utilities;
 
     [Export]
     internal partial class ProjectProperties : StronglyTypedPropertyAccess

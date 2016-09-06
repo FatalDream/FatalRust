@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Immutable;
-using System.Windows;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.ProjectSystem.Designers;
-using Microsoft.VisualStudio.ProjectSystem.Utilities;
-using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.ProjectSystem;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Reflection;
 

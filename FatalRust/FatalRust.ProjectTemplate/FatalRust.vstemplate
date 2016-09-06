@@ -7,7 +7,7 @@
     <ProjectType>FatalRust</ProjectType>
     <RequiredFrameworkVersion>4.5.2</RequiredFrameworkVersion>
     <SortOrder>1</SortOrder>
-    <TemplateID>{bc871b78-73f0-45cf-aedd-e777aa1b05ad}</TemplateID>
+    <TemplateID>{a031bf96-68cf-4901-a252-0da51b496acb}</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>FatalRust</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
@@ -18,8 +18,8 @@
       These are the items which will show up when a new project is created using the custom project system.
       Items referenced in here must also be referenced in the project file.
       -->
+      <ProjectItem TargetFileName="src\main.rs" ReplaceParameters="true">main.rs</ProjectItem>
       <ProjectItem OpenInEditor="true" ReplaceParameters="true">Cargo.toml</ProjectItem>
-      <ProjectItem OpenInEditor="true" ReplaceParameters="true">src\main.rs</ProjectItem>
     </Project>
   </TemplateContent>
 </VSTemplate>
