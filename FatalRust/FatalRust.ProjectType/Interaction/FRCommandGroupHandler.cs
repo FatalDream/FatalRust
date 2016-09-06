@@ -18,7 +18,7 @@ namespace FatalRust
     // TODO: Replace the Guid specified in the ExportCommandGroup attribute with the group id of your commands
     [ExportCommandGroup(VSConstants.CMDSETID.StandardCommandSet97_string)]
     [AppliesTo(MyUnconfiguredProject.UniqueCapability)]
-    internal class CommandGroupHandler : IAsyncCommandGroupHandler
+    internal class FRCommandGroupHandler : IAsyncCommandGroupHandler
     {
         [Import(typeof(IBuildController))]
         public IBuildController BuildController;

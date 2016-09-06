@@ -170,7 +170,7 @@
     <Compile Include="BuildSystem\Control\BuildController.cs" />
     <Compile Include="BuildSystem\Control\IBuildController.cs" />
     <Compile Include="BuildSystem\Control\Logger.cs" />
-    <Compile Include="CommandGroupHandler.cs" />
+    <Compile Include="Interaction\FRCommandGroupHandler.cs" />
     <Compile Include="Core\BinaryVersion.cs" />
     <Compile Include="Core\Communication.cs" />
     <Compile Include="Core\EReleaseChannel.cs" />
