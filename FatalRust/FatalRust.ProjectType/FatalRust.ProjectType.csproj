@@ -190,13 +190,21 @@
     <Compile Include="ProjectConfiguration\ProjectToolchainConfigurationService.cs" />
     <Compile Include="ProjectConfiguration\ToolchainProjectConfiguration.cs" />
     <Compile Include="ProjectProperties.cs" />
+    <Compile Include="ProjectTree\FRImagesMonikers.cs" />
     <Compile Include="ProjectTree\FRProjectTreePropertiesProvider.cs" />
     <Compile Include="VsPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ProjectTree\Images\FRImagesProjectIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <Content Include="ProjectTree\FRImages.imagemanifest">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="source.extension.vsixmanifest" />
     <None Include="Key.snk" />
   </ItemGroup>
@@ -285,6 +293,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Resource Include="ProjectTree\Images\FRImagesProjectIcon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\Microsoft.VisualStudio.ProjectSystem.Analyzers.15.0.183-pre\analyzers\Microsoft.VisualStudio.ProjectSystem.Analyzers.dll" />

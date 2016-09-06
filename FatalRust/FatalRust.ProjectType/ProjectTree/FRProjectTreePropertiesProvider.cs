@@ -30,7 +30,7 @@ namespace FatalRust.ProjectTree
             if (propertyValues.Flags.Contains(ProjectTreeFlags.Common.ProjectRoot))
             {
                 // TODO: Provide a moniker that represents the desired icon (you can use the "Custom Icons" item template to add a .imagemanifest to the project)
-                propertyValues.Icon = KnownMonikers.JSProjectNode.ToProjectSystemType();
+                propertyValues.Icon = KnownMonikers.CPPProjectNode.ToProjectSystemType();
             }
         }
     }

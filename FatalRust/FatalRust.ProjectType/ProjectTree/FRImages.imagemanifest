@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImageManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                           xmlns="http://schemas.microsoft.com/VisualStudio/ImageManifestSchema/2014">
+  <Symbols>
+    <String Name="Resources" Value="/FatalRust.ProjectTree;Component/" />
+    <Guid Name="FRImagesGuid" Value="f8e0123c-a167-406b-a0e7-944ed021a7e3" />
+    <ID Name="ProjectIcon" Value="0" />
+  </Symbols>
+  <Images>
+    <Image Guid="$(FRImagesGuid)" ID="$(ProjectIcon)">
+      <Source Uri="$(Resources)/Images/FRImagesProjectIcon.xaml" />
+      <Source Uri="$(Resources)/Images/FRImagesProjectIcon.png" >
+        <Size Value="16" />
+      </Source>  
+    </Image>
+  </Images>
+  <ImageLists />
+</ImageManifest>
