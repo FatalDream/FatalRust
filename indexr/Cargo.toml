@@ -1,0 +1,7 @@
+[package]
+name = "indexr"
+version = "0.1.0"
+authors = ["Maxim Urschumzew <u.maxim@live.de>"]
+
+[dependencies]
+
