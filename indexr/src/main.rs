@@ -5,12 +5,19 @@ extern crate syntax;
 use std::collections::HashMap;
 use std::env;
 use std::path::Path;
+use std::io::{self, Read};
 
 use syntax::ast;
 use syntax::codemap::{CodeMap, Loc, Span};
 use syntax::errors::DiagnosticBuilder;
 use syntax::parse::{self, ParseSess};
 use syntax::visit::{self, FnKind, Visitor};
+
+mod indexer;
+mod runtime;
+pub use indexer::Indexer as Indexer;
+pub use runtime::Runtime as Runtime;
+
 
 fn parse<'a, T: ?Sized + AsRef<Path>>(path: &T,
                                       parse_session: &'a ParseSess)
@@ -28,29 +35,32 @@ fn parse<'a, T: ?Sized + AsRef<Path>>(path: &T,
 }
 
 fn main() {
-    std::env::current_exe()
-        // call parser
-        .map(|mut path| {
-            path.pop();
-            path.pop();
-            path.pop();
-            path.push("project");
-            path.push("test.rs");
-            let parse_session = ParseSess::new();
-            let krate = parse(&path, &parse_session).unwrap();
+    println!("---------- RUNNING ----------");
 
-            let mut counts: Vec<_> = count_fn_args(&krate, parse_session.codemap()).into_iter().collect();
-            // We could just `sort` instead of `sort_by`, since the (name, count) pair
-            // would sort by name first. But I wanted there to be a closure in here for
-            // running the program against its own source. :-)
-            counts.sort_by(|x, y| x.0.cmp(&y.0));
+    let args : Vec<_> = std::env::args().collect();
+    let mut path = std::path::PathBuf::from(args[1].clone());
 
-            println!("{} {}", "FUNCTION", "ARGS");
-            for (func, num_args) in counts {
-                println!("{} {}", func, num_args);
-            }
-        });
+    let mut runtime = Runtime::new(path);
+    runtime.run();
+
+    // {
+    //     let parse_session = ParseSess::new();
+    //     let krate = parse(&path, &parse_session).unwrap();
+
+    //     let mut counts: Vec<_> = count_fn_args(&krate, parse_session.codemap()).into_iter().collect();
+    //     // We could just `sort` instead of `sort_by`, since the (name, count) pair
+    //     // would sort by name first. But I wanted there to be a closure in here for
+    //     // running the program against its own source. :-)
+    //     counts.sort_by(|x, y| x.0.cmp(&y.0));
+
+    //     println!("{} {}", "FUNCTION", "ARGS");
+    //     for (func, num_args) in counts {
+    //         println!("{} {}", func, num_args);
+    //     }
+    // }
 }
+
+
 
 struct CountFnArgs<'a> {
     arg_counts: HashMap<String, usize>,
@@ -86,7 +96,7 @@ impl<'a> Visitor for CountFnArgs<'a> {
 
         self.arg_counts.insert(fn_name.clone(), fn_decl.inputs.len());
 
-        println!("Found fn: {}", fn_name);
+        println!("Found fn: {:?}", fn_decl);
 
         // Continue walking the rest of the funciton so we pick up any functions
         // or closures defined in its body.
